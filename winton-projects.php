@@ -42,6 +42,13 @@
           <li class="nav-item">
             <a class="nav-link" href="#skills">Skills</a>
           </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="#form">Contact Me</a>
+          </li>
+        
+        
+        
         </ul>
       
       </div>
@@ -52,6 +59,97 @@
     
     
     
+
+	<?php
+	// define variables and set to empty values
+	$recipient = $sender = $subject = $body = "";
+	$recErr = $sendErr = $subErr = $bodyErr = $nameErr= "";
+
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+
+
+
+
+
+		if (empty($_POST["sender"])) {
+			$sendErr = "You must enter from address";
+		}
+
+		elseif(!filter_var($_POST["sender"], FILTER_VALIDATE_EMAIL)){
+			$sender = test_input($_POST["sender"]);
+			$sendErr = "Invalid email format";
+
+		}
+
+		else {
+			$sender = test_input($_POST["sender"]);
+		}
+
+
+
+		if (empty($_POST["subject"])) {
+			$subErr = "You must enter subject";
+		}
+
+
+
+		else {
+			$subject = test_input($_POST["subject"]);
+
+
+
+		}
+
+
+
+
+		if (empty($_POST["body"])) {
+			$bodyErr = "You must enter body";
+		}
+
+
+
+		else {
+			$body = test_input($_POST["body"]);
+		}
+
+		if (empty($_POST["name"])) {
+			$nameErr = "You must enter name";
+		}
+		
+		
+		
+		else {
+			$name = test_input($_POST["name"]);
+		}
+		
+		
+		
+
+
+	}
+
+
+
+
+
+
+
+
+
+	function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
+
+
+?>
     
     
     
@@ -95,6 +193,10 @@
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
    
+   <div style="background-color:gray;  padding-top:2rem">
+   
+	
+      </div>
   
   <div id="breakdown" class=marketing style="background-color: white;padding-top: 4rem;">
   
@@ -126,10 +228,14 @@
 </div>
       <!-- START THE FEATURETTES -->
 
+ <div style="background-color:gray;  padding-top:2rem">
+   
+	
+      </div>
 
     
 
-      <div class="marketinggray"  id="skills"  style= "padding-bottom: 6rem; padding-top: 6rem;padding-right: 4rem;  padding-left: 4rem;  background-color:lightgray">
+      <div class="marketinggray"  id="skills"  style= "padding-bottom: 6rem; padding-top: 5rem;padding-right: 4rem;  padding-left: 4rem;  background-color:lightgray">
          <h1 class="text-center" style = "margin-bottom:2rem" >Skills</h1>
          <div class="row">
          <div class=" offset-lg-3  col-lg-6 ">
@@ -198,43 +304,126 @@
 
 </div>
 
-
+</div>
 
 
 
 
 				
-        </div>
-      
+     
     
 
   
 
-      <div style="background-color:gray">
+      <div style="background-color:gray;  padding-top:2rem">
    
 	
       </div>
 
-      <hr class="featurette-divider">
+<div style= "padding-top:2rem">
 
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
+     
+        <h1 class="text-center" style = "margin-bottom:2rem" >Contact Me</h1>
+         <div class="row ">
+         <div class=" col-lg-12">
+         <p class=" text-center ">Want to reach me? Fill out this Form!</p>
+ 
+           </div>
+				</div>
+       <div class="row" id ="form">
+      <div class ="offset-md-3 col-md-6">
+      <form method="post"  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'#form';?>" class="w3-container w3-card-4 w3-light-gray w3-text-blue w3-margin">
+
+ 
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user" style="padding-left:5px"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="name" type="text" placeholder="Name"> <span class=" w3-text-amber"><?php echo $nameErr;?>
+		</span> 
+    </div>
+</div>
+
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"  style="padding-left:5px"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="sender" type="text" placeholder="Email"> <span class=" w3-text-amber"><?php echo $sendErr;?>
+		</span> 
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"  style="padding-left:5px"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="subject" type="text" placeholder="Subject">  <span class=" w3-text-amber"><?php echo $subErr;?>
+		</span> 
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"  style="padding-left:5px"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="body" type="text" placeholder="Message"> <span class=" w3-text-amber"><?php echo $bodyErr;?>
+		</span>
+    </div>
+</div>
+
+<button class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Send</button>
+
+</form>
+
+
+	
+	<?php
+$recipient = 'mwinton@mit.edu';
+
+
+	
+	if(filter_var($recipient, FILTER_VALIDATE_EMAIL) and filter_var($sender, FILTER_VALIDATE_EMAIL)){
+
+
+$headers = "From: $name";
+
+
+
+$headers = "From: $name $sender" . PHP_EOL .
+"Reply-To: $name $sender" . PHP_EOL .
+'X-Mailer: PHP/' . phpversion();
+
+$header = "$name $sender\r\n";
+ 
+
+// Send email
+
+if (mail($recipient, $subject, $body, $header,"-f $recipient")){
+} else {
+
+}
+
+
+
+
+}
+
+
+
+?>
+	
+	</div>
+	
       </div>
 
-      <hr class="featurette-divider">
-
+</div>
+  <div style="background-color:gray;  padding-top:2rem">
+   
+	
+      </div>
       <!-- /END THE FEATURETTES -->
       
 
 
       <!-- FOOTER -->
-<footer class="w3-container w3-center w3-margin-top w3-text-blue" style="background-color: lightgray; padding-top:4rem" >
+<footer class="w3-container w3-center w3-margin-top w3-text-blue" style="background-color: white; padding-top:4rem" >
   <p>More about me!</p>
    <a href="https://www.facebook.com/mwinton97?ref=bookmarks" style="text-decoration: none"> <i class="fa fa-facebook-official w3-hover-opacity w3-xxlarge""></i></a>
    <a href="https://www.instagram.com/martin5156/" style="text-decoration: none"> <i class="fa fa-instagram w3-hover-opacity w3-xxlarge"></i></a>
